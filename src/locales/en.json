@@ -1,0 +1,75 @@
+{
+  "appTitle": "Paddy Inventory Management",
+  "brand": "NIMSARA SAHAL",
+  "nav": {
+    "dashboard": "Dashboard",
+    "sales": "Sales",
+    "customers": "Customers",
+    "paddyType": "Paddy Type",
+    "salesHistory": "Sales History",
+    "salesReport": "Sales Report",
+    "expenses": "Expenses",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "common": {
+    "totalSales": "Total Sales",
+    "totalRevenue": "Total Revenue",
+    "totalWeight": "Total Weight",
+    "activeCustomers": "Active Customers",
+    "allTimeEarnings": "All time earnings",
+    "paddySoldTons": "Paddy sold (tons)",
+    "registeredCustomers": "Registered customers",
+    "avgSaleValue": "Avg. Sale Value",
+    "perTransaction": "Per transaction",
+    "todaySales": "Today's Sales",
+    "thisMonth": "This Month"
+  },
+  "actions": {
+    "addCustomer": "Add Customer",
+    "addNewCustomer": "Add New Customer",
+    "addPaddyType": "Add Paddy Type",
+    "addNewPaddyType": "Add New Paddy Type",
+    "update": "Update",
+    "cancel": "Cancel",
+    "generateBill": "Generate Bill",
+    "print": "Print",
+    "printReceipt": "Print Receipt",
+    "close": "Close"
+  },
+  "form": {
+    "selectCustomer": "Select Customer :",
+    "chooseCustomer": "Choose customer...",
+    "paddyType": "Paddy Type :",
+    "choosePaddyType": "Choose paddy type...",
+    "date": "Date :",
+    "bundle": "Bundle",
+    "weight": "Weight",
+    "addColumn": "Add Column",
+    "enterRate": "Enter Rate (per kg):",
+    "totalPrice": "Total Price",
+    "totalBundles": "Total Bundles:",
+    "totalWeight": "Total Weight:",
+    "customer": "Customer:",
+    "paddyTypeLabel": "Paddy Type:"
+  },
+  "receipt": {
+    "receiptBill": "Receipt Bill",
+    "taxInvoice": "Tax Invoice",
+    "billNo": "Bill No",
+    "date": "Date",
+    "paymentMode": "Payment Mode",
+    "cash": "Cash",
+    "item": "Item",
+    "qty": "Qty",
+    "rate": "Rate",
+    "amount": "Amt",
+    "subTotal": "Sub Total:",
+    "total": "TOTAL",
+    "thankYou": "Thank You"
+  },
+  "lang": {
+    "english": "English",
+    "sinhala": "Sinhala"
+  }
+}

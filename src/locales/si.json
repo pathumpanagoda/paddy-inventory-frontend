@@ -1,0 +1,75 @@
+{
+  "appTitle": "සහල් කළමනාකරණය",
+  "brand": "නිම්සර සහල්",
+  "nav": {
+    "dashboard": "ප්රධාන ලේඛනය",
+    "sales": "විකුණුම්",
+    "customers": "පාරිභෝගිකයින්",
+    "paddyType": "සහල් වර්ගය",
+    "salesHistory": "විකුණුම් ඉතිහාසය",
+    "salesReport": "විකුණුම් වාර්තාව",
+    "expenses": "වැය",
+    "settings": "සිටුවම්",
+    "logout": "පිටවන"
+  },
+  "common": {
+    "totalSales": "මුළු විකුණුම්",
+    "totalRevenue": "මුළු ආදායම",
+    "totalWeight": "මුළු බර",
+    "activeCustomers": "සක්‍රීය පාරිභෝගිකයින්",
+    "allTimeEarnings": "සියලු කාල ආදායම්",
+    "paddySoldTons": "විකුණුම් කළ සහල් (ටොන්)",
+    "registeredCustomers": "ලියාපදිංචි පාරිභෝගිකයින්",
+    "avgSaleValue": "සාමාන්ය විකුණුම් වටිනාකම",
+    "perTransaction": "ගනුදෙනුවකට",
+    "todaySales": "අද විකුණුම්",
+    "thisMonth": "මේ මාසය"
+  },
+  "actions": {
+    "addCustomer": "පාරිභෝගිකයෙක් එක් කරන්න",
+    "addNewCustomer": "නව පාරිභෝගිකයෙක්",
+    "addPaddyType": "සහල් වර්ගයක් එක් කරන්න",
+    "addNewPaddyType": "නව සහල් වර්ගයක්",
+    "update": "යාවත්කාලීන කරන්න",
+    "cancel": "අවලංගු",
+    "generateBill": "බිල්පත සකස් කරන්න",
+    "print": "මුද්‍රණය",
+    "printReceipt": "රසීද මුද්‍රණය",
+    "close": " වසන්න"
+  },
+  "form": {
+    "selectCustomer": "පාරිභෝගිකයාව තෝරන්න :",
+    "chooseCustomer": "පාරිභෝගිකයාව තෝරන්න...",
+    "paddyType": "සහල් වර්ගය :",
+    "choosePaddyType": "සහල් වර්ගය තෝරන්න...",
+    "date": "දිනය :",
+    "bundle": "බණ්ඩල්",
+    "weight": "බර",
+    "addColumn": "ගොනුව එක් කරන්න",
+    "enterRate": "ගාස්තුව (කි.ග්‍රෑ) ඇතුල් කරන්න:",
+    "totalPrice": "මුළු වටිනාකම",
+    "totalBundles": "මුළු බණ්ඩල්:",
+    "totalWeight": "මුළු බර:",
+    "customer": "පාරිභෝගිකයා:",
+    "paddyTypeLabel": "සහල් වර්ගය:"
+  },
+  "receipt": {
+    "receiptBill": "රසීදු බිල්පත",
+    "taxInvoice": "බදු ඉන්වොයිසය",
+    "billNo": "බිල් අංකය",
+    "date": "දිනය",
+    "paymentMode": "ගෙවීම් ක්‍රමය",
+    "cash": "නගද",
+    "item": "අයිතමය",
+    "qty": "ප්‍රමාණය",
+    "rate": "අනුපාතය",
+    "amount": "මුදල",
+    "subTotal": " උප සමස්තය:",
+    "total": "මුළු මුදල",
+    "thankYou": "ඔබට ස්තූතියි"
+  },
+  "lang": {
+    "english": "English",
+    "sinhala": "සිංහල"
+  }
+}
