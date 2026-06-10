@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NewSaleForm from './components/NewSaleForm';
 import CustomerManagement from './components/CustomerManagement';
 import PaddyTypeManagement from './components/PaddyTypeManagement';
@@ -62,6 +62,16 @@ export type ActivePage = 'dashboard' | 'sales' | 'customers' | 'paddyType' | 'sa
 function App() {
   const { t, i18n } = useTranslation();
   const [activePage, setActivePage] = useState<ActivePage>('dashboard');
+
+  useEffect(() => {
+    // Check for saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
   
   // Sample data - in a real app, this would come from a database
   const [customers, setCustomers] = useState<Customer[]>([

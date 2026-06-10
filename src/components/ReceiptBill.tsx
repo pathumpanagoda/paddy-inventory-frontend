@@ -55,51 +55,173 @@ const ReceiptBill: React.FC<ReceiptBillProps> = ({
   const total = subtotal + taxAmount;
 
   const handlePrint = () => {
-    const printContent = document.getElementById('receipt-content');
-    if (printContent) {
-      const printWindow = window.open('', '_blank');
-      if (printWindow) {
-        printWindow.document.write(`
-          <html>
-            <head>
-              <title>Receipt - ${billNumber}</title>
-              <style>
-                body { 
-                  font-family: 'Courier New', monospace; 
-                  margin: 0; 
-                  padding: 20px;
-                  font-size: 12px;
-                  line-height: 1.4;
-                }
-                .receipt { 
-                  width: 300px; 
-                  margin: 0 auto;
-                  border: 1px solid #000;
-                  padding: 10px;
-                }
-                .center { text-align: center; }
-                .bold { font-weight: bold; }
-                .line { border-bottom: 1px dashed #000; margin: 5px 0; }
-                .double-line { border-bottom: 2px solid #000; margin: 5px 0; }
-                table { width: 100%; border-collapse: collapse; }
-                th, td { text-align: left; padding: 2px 0; }
-                .right { text-align: right; }
-                .item-row td { border-bottom: 1px dotted #ccc; }
-                @media print {
-                  body { margin: 0; padding: 0; }
-                  .receipt { border: none; }
-                }
-              </style>
-            </head>
-            <body>
-              ${printContent.innerHTML}
-            </body>
-          </html>
-        `);
-        printWindow.document.close();
+    // Load settings
+    const savedSettings = localStorage.getItem('businessSettings');
+    const settings = savedSettings ? JSON.parse(savedSettings) : {
+      name: 'NIMSARA SAHAL',
+      address: 'KOLLAM, KERALA.',
+      phone: '+94 77 123 4567',
+      gstin: '32IDNAP1991T1Z8',
+      paperSize: '80mm'
+    };
+
+    const width = settings.paperSize === '58mm' ? '200px' : '300px';
+    const fontSize = settings.paperSize === '58mm' ? '10px' : '12px';
+
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      const htmlContent = `
+        <html>
+          <head>
+            <title>Receipt - ${billNumber}</title>
+            <style>
+              body { 
+                font-family: 'Courier New', monospace; 
+                margin: 0; 
+                padding: 20px;
+                font-size: ${fontSize};
+                line-height: 1.4;
+              }
+              .receipt { 
+                width: ${width}; 
+                margin: 0 auto;
+              }
+              .center { text-align: center; }
+              .bold { font-weight: bold; }
+              .text-lg { font-size: ${settings.paperSize === '58mm' ? '14px' : '16px'}; }
+              .text-sm { font-size: ${fontSize}; }
+              .text-xs { font-size: ${settings.paperSize === '58mm' ? '9px' : '11px'}; }
+              .mb-1 { margin-bottom: 4px; }
+              .mb-2 { margin-bottom: 8px; }
+              .mb-3 { margin-bottom: 12px; }
+              .mb-4 { margin-bottom: 16px; }
+              .dashed-line { border-top: 1px dashed #000; margin: 10px 0; }
+              .double-line { border-top: 3px double #000; margin: 10px 0; }
+              .flex-between { display: flex; justify-content: space-between; }
+              table { width: 100%; border-collapse: collapse; }
+              th { text-align: left; border-bottom: 1px solid #000; padding: 5px 0; }
+              td { padding: 5px 0; vertical-align: top; }
+              .text-right { text-align: right; }
+              .text-center { text-align: center; }
+              .item-row td { border-bottom: 1px dotted #ccc; }
+              
+              @media print {
+                body { margin: 0; padding: 0; }
+                @page { margin: 0; size: auto; }
+              }
+            </style>
+          </head>
+          <body>
+            <div class="receipt">
+              <!-- Business Header -->
+              <div class="center mb-4">
+                <div class="bold text-lg mb-1">${settings.name}</div>
+                <div class="text-sm">PADDY INVENTORY MANAGEMENT</div>
+                <div class="text-xs">${settings.address}</div>
+                <div class="text-xs">PHONE: ${settings.phone}</div>
+                <div class="text-xs">GSTIN: ${settings.gstin}</div>
+              </div>
+
+              <div class="dashed-line"></div>
+
+              <!-- Invoice Details -->
+              <div class="center mb-3">
+                <div class="bold">Tax Invoice</div>
+              </div>
+
+              <div class="mb-3 text-xs">
+                <div>Bill No: ${billNumber}</div>
+                <div>Date: ${new Date(date).toLocaleDateString('en-GB')} ${new Date().toLocaleTimeString('en-GB', { hour12: false })}</div>
+                <div>Customer: ${customer.name}</div>
+                <div>Phone: ${customer.phone}</div>
+                <div>Payment Mode: Cash</div>
+              </div>
+
+              <div class="dashed-line"></div>
+
+              <!-- Items Table -->
+              <table class="text-xs mb-3">
+                <thead>
+                  <tr>
+                    <th style="width: 40%">Item</th>
+                    <th class="text-center" style="width: 20%">Qty</th>
+                    <th class="text-right" style="width: 20%">Rate</th>
+                    <th class="text-right" style="width: 20%">Amt</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${entries.map((entry, index) => `
+                    <tr class="item-row">
+                      <td>
+                        ${index + 1}. ${paddyType.name}<br>
+                        ${entry.bundles} Bundle${entry.bundles > 1 ? 's' : ''}
+                      </td>
+                      <td class="text-center">${entry.weight}kg</td>
+                      <td class="text-right">${rate.toFixed(2)}</td>
+                      <td class="text-right">${(entry.weight * rate).toFixed(2)}</td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+
+              <div class="dashed-line"></div>
+
+              <!-- Summary -->
+              <div class="text-xs mb-3">
+                <div class="flex-between">
+                  <span>Total Bundles:</span>
+                  <span>${totalBundles}</span>
+                </div>
+                <div class="flex-between">
+                  <span>Total Weight:</span>
+                  <span>${totalWeight} kg</span>
+                </div>
+                <div class="flex-between">
+                  <span>Sub Total:</span>
+                  <span>Rs.${subtotal.toFixed(2)}</span>
+                </div>
+                ${taxAmount > 0 ? `
+                  <div class="flex-between">
+                    <span>CGST @ ${taxRate/2}%:</span>
+                    <span>${(taxAmount/2).toFixed(2)}</span>
+                  </div>
+                  <div class="flex-between">
+                    <span>SGST @ ${taxRate/2}%:</span>
+                    <span>${(taxAmount/2).toFixed(2)}</span>
+                  </div>
+                ` : ''}
+              </div>
+
+              <div class="double-line"></div>
+
+              <!-- Total -->
+              <div class="flex-between bold text-lg mb-3">
+                <span>TOTAL</span>
+                <span>Rs.${total.toFixed(2)}</span>
+              </div>
+
+              <div class="dashed-line"></div>
+
+              <!-- Footer -->
+              <div class="center text-xs">
+                <div class="mb-2">!!! Thank You !!!</div>
+                <div class="text-right">E & O E</div>
+              </div>
+            </div>
+          </body>
+        </html>
+      `;
+      
+      printWindow.document.write(htmlContent);
+      printWindow.document.close();
+      
+      // Wait for content to load before printing
+      printWindow.onload = () => {
+        printWindow.focus();
         printWindow.print();
-        printWindow.close();
-      }
+        // Optional: close after print
+        // printWindow.close();
+      };
     }
   };
 
